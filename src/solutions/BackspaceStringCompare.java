@@ -7,6 +7,12 @@
 package solutions;
 
 public class BackspaceStringCompare {
+	/**
+	 * O(n) space solution
+	 * @param s
+	 * @param t
+	 * @return
+	 */
 	public boolean backspaceCompare(String s, String t) {
 		StringBuilder sb1 = new StringBuilder();
 		for (char c : s.toCharArray()) {
@@ -36,7 +42,7 @@ public class BackspaceStringCompare {
 		int j = t.length() - 1;
 		int skipS = 0, skipT = 0;
 
-        while (i >= 0 || j >= 0) { // While there may be chars in build(S) or build (T)
+        while (i >= 0 || j >= 0) { // While there may be chars in s or t
             while (i >= 0) { // Find position of next possible char to compare
                 if (s.charAt(i) == '#') {
                 	skipS++; 
@@ -62,6 +68,7 @@ public class BackspaceStringCompare {
             // If two actual characters are different
             if (i >= 0 && j >= 0 && s.charAt(i) != t.charAt(j))
                 return false;
+            
             // If expecting to compare char vs nothing 
             if ((i >= 0 && j < 0) || (i < 0 && j >= 0))
                 return false;
@@ -76,6 +83,7 @@ public class BackspaceStringCompare {
 		//System.out.println(new BackspaceStringCompare().backspaceCompare2("a#b#a#f#c", "c"));
 		//System.out.println(new BackspaceStringCompare().backspaceCompare2("a#b#", "c#"));
 		System.out.println(new BackspaceStringCompare().backspaceCompare2("a#b#", "c"));
+		System.out.println(new BackspaceStringCompare().backspaceCompare2("#ab##", "g"));
 	}
 
 }
