@@ -14,28 +14,48 @@ public class FindPeakElement {
 
 	public int findPeakElement(int[] nums) {
 		int left = 0;
-		int right = nums.length;
+		int right = nums.length - 1;
 
 		int mid = 0;
 		while (left <= right) {
-			mid = left / 2 + right / 2;
+			mid = left + (right - left) / 2;
 			if ((mid == 0 || nums[mid] > nums[mid - 1])
 				&& (mid == nums.length - 1
 					|| nums[mid] > nums[mid + 1])) {
 				return mid;
-			} else if (nums[mid - 1] > nums[mid]) {
+			} else if (mid > 0
+				&& nums[mid - 1] > nums[mid]) { // in case of 2 elements need to check if mid > 0
 				right = mid - 1;
 			} else {
 				left = mid + 1;
 			}
 		}
-		return -1;
+		return Integer.MIN_VALUE;
 
 	}
 
 	public static void main(String[] args) {
+//		System.out
+//			.println(new FindPeakElement().findPeakElement(
+//				new int[] { 100, 20, 30, 10, 25 }));
+//		System.out.println(new FindPeakElement()
+//			.findPeakElement(new int[] { 100, 20, 10, 5 }));
+//		System.out.println(new FindPeakElement()
+//			.findPeakElement(new int[] { 10, 20, 30, 40 }));
+//		System.out.println(new FindPeakElement()
+//			.findPeakElement(new int[] { 5, 10, 30, 20 }));
+//		System.out.println(new FindPeakElement()
+//			.findPeakElement(new int[] { 5, -5, 5, 4 }));
+//		System.out
+//			.println(new FindPeakElement().findPeakElement(
+//				new int[] { 10, 20, 30, 40, 50 }));
+//		System.out
+//			.println(new FindPeakElement().findPeakElement(
+//				new int[] { 5, 10, 30, 20, 40 }));
 		System.out.println(new FindPeakElement()
-			.findPeakElement(new int[] { 100, 20, 10, 5 }));
+			.findPeakElement(new int[] { 1, 3, 2, 1 }));
+		System.out.println(new FindPeakElement()
+			.findPeakElement(new int[] { 1, 3 }));
 	}
 
 }
