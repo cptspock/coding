@@ -24,8 +24,8 @@ public class PaintHouse {
 
 		int[] totalCost = new int[costs[0].length];
 		for (int i = 0; i < costs.length; i++) {
-			if (costs[i][0] == 0 || costs[i][1] == 0 // costs should strictly be +ve
-				|| costs[i][2] == 0)
+			if (costs[i][0] <= 0 || costs[i][1] <= 0 // costs should strictly be +ve
+				|| costs[i][2] <= 0)
 				return 0;
 			int totalCost0 = costs[i][0]
 				+ Math.min(totalCost[1], totalCost[2]);
