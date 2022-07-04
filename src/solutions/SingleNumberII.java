@@ -19,8 +19,8 @@ public class SingleNumberII {
 	}
 
 	public static void main(String[] args) {
-		SingleNumberII.singleNumber(
-			new int[] { 0, 1, 0, 1, 0, 1, 99 });
+		System.out.println(SingleNumberII.singleNumber(
+			new int[] { 0, 1, 0, 1, 0, 1, 99 }));
 	}
 
 }
