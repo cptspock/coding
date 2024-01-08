@@ -16,14 +16,14 @@ public class ClimbingStairs2 {
 		if (n == 1)
 			return 1;
 
-		int prev1 = 1;
-		int prev2 = 1;
+		int step1 = 1;
+		int step2 = 1;
 		int numberOfWays = 0;
 
 		for (int i = 2; i <= n; i++) {
-			numberOfWays = prev1 + prev2;
-			prev1 = prev2;
-			prev2 = numberOfWays;
+			numberOfWays = step1 + step2;
+			step1 = step2;
+			step2 = numberOfWays;
 		}
 		return numberOfWays;
 	}
