@@ -48,5 +48,4 @@ public class Sqrt {
 		System.out.println(new Sqrt().mySqrt(0));
 
 	}
-
 }
