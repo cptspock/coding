@@ -30,10 +30,7 @@ public class MergeSortedArrays {
 				j--;
 			}
 		}
-//		while (i2 >= 0) { // for the case when nums1.length = nums2.length = 1 (without including the extra 1 slot in nums1)
-//						  // ex: nums1 = {2, 0}, nums2 = {1}
-//			nums1[right--] = nums2[i2--];
-//		}
+
 		for (int k = 0; k < nums1.length; k++)
 			System.out.println(nums1[k]);
 	}
