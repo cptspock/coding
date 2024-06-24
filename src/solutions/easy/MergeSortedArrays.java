@@ -32,15 +32,20 @@ public class MergeSortedArrays {
 		}
 
 		for (int k = 0; k < nums1.length; k++)
-			System.out.println(nums1[k]);
+			System.out.print(nums1[k] + " ");
+		System.out.println("\n");
 	}
 
 	public static void main(String[] args) {
+
 		new MergeSortedArrays().merge(new int[] { 2, 0 }, 1, new int[] { 1 },
 			1);
 
 		new MergeSortedArrays().merge(new int[] { 1, 2, 3, 0, 0, 0 }, 3,
 			new int[] { 2, 5, 6 }, 3);
+
+		new MergeSortedArrays().merge(new int[] { 0 }, 0, new int[] { 1 }, 1);
+
 	}
 
 }
