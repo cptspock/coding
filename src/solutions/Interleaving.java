@@ -62,7 +62,6 @@ public class Interleaving {
 					dp[i][j] = dp[i - 1][j];
 				if (s3.charAt(i + j - 1) == s2.charAt(j - 1))
 					dp[i][j] = dp[i][j] || dp[i][j - 1];
-
 			}
 		}
 		return dp[s1.length()][s2.length()];
@@ -76,6 +75,7 @@ public class Interleaving {
 		System.out.println(
 			new Interleaving().isInterleave("aabcc", "dbbca", "aadbbbaccc"));
 		System.out.println(new Interleaving().isInterleave("", "", ""));
+		System.out.println(new Interleaving().isInterleave("ab", "bc", "babc"));
 
 	}
 
