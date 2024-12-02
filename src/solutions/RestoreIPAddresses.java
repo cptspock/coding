@@ -1,6 +1,7 @@
 package solutions;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -38,6 +39,9 @@ public class RestoreIPAddresses {
 	public List<String> restoreIpAddresses(String s) {
 		List<String> result = new ArrayList<>();
 		int len = s.length();
+		if (len > 12)
+			return result;
+
 		StringBuffer ip = new StringBuffer();
 		for (int aLen = 1; aLen <= 3; aLen++) {
 			for (int bLen = 1; bLen <= 3; bLen++) {
@@ -56,19 +60,54 @@ public class RestoreIPAddresses {
 							ip.append(A).append(".").append(B).append(".")
 								.append(C).append(".").append(D);
 
-							// check for leading 0's
+							// check for leading 0's since when you convert from
+							// string to int leading 0s will be lost
 							if (ip.length() == len + 3) {
 								result.add(ip.toString());
 							}
 							ip = new StringBuffer();
 						}
-
 					}
 				}
 			}
 		}
 		return result;
+	}
 
+	// Backtracking solution
+	public List<String> restoreIpAddresses2(String s) {
+		List<String> result = new ArrayList<>();
+		int len = s.length();
+		if (len < 4 || len > 12)
+			return result;
+		backtrack(s, 0, new LinkedList<String>(), result);
+		return result;
+	}
+
+	private void backtrack(String s, int idx, LinkedList<String> curr,
+		List<String> result) {
+
+		if (curr.size() == 4) {
+			if (idx == s.length()) {
+				result.add(String.join(".", curr));
+			}
+			return;
+		}
+
+		// bulk of the algo
+		StringBuffer num = new StringBuffer();
+		for (int i = idx; i < Math.min(idx + 3, s.length()); i++) {
+			num.append(s.charAt(i));
+			if (num.charAt(0) == '0' && num.length() > 1) {
+				break;
+			}
+			int number = Integer.parseInt(num.toString());
+			if (number >= 0 && number <= 255) {
+				curr.add(num.toString());
+				backtrack(s, i + 1, curr, result);
+				curr.removeLast();
+			}
+		}
 	}
 
 	public static void main(String[] args) {
@@ -82,6 +121,17 @@ public class RestoreIPAddresses {
 		System.out.println("-------------------");
 		System.out
 			.println(new RestoreIPAddresses().restoreIpAddresses("0011255245"));
+		System.out.println(
+			new RestoreIPAddresses().restoreIpAddresses2("25525511135"));
+		System.out.println("-------------------");
+		System.out
+			.println(new RestoreIPAddresses().restoreIpAddresses2("0000"));
+		System.out.println("-------------------");
+		System.out
+			.println(new RestoreIPAddresses().restoreIpAddresses2("101023"));
+		System.out.println("-------------------");
+		System.out.println(
+			new RestoreIPAddresses().restoreIpAddresses2("0011255245"));
 
 	}
 
